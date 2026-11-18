@@ -27,7 +27,7 @@ def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
 def create_report(output_path, img_dir):
     doc = Document()
 
-    # Set margins to 0.75 in
+    # Margins
     for section in doc.sections:
         section.top_margin = Inches(0.75)
         section.bottom_margin = Inches(0.75)
@@ -101,19 +101,20 @@ def create_report(output_path, img_dir):
     doc.add_paragraph().paragraph_format.space_after = Pt(6)
 
     # 2. GitHub & Docker Hub Details
-    h2 = doc.add_heading("2. Repository and Deployment References", level=1)
+    h2 = doc.add_heading("2. Repository, Pull Request & Deployment References", level=1)
     h2.paragraph_format.space_before = Pt(12)
     h2.paragraph_format.space_after = Pt(6)
 
-    repo_table = doc.add_table(rows=6, cols=2)
+    repo_table = doc.add_table(rows=7, cols=2)
     repo_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     repo_table.autofit = False
 
     repo_data = [
         ("GitHub Repository (Fork)", "https://github.com/abhayships/MSE-2-SSED-Morning"),
         ("Active Implementation Branch", "main"),
+        ("Submitted Pull Request (PR #30)", "https://github.com/atindeRR/MSE-2-SSED-Morning/pull/30"),
+        ("Pull Request Title", "DOCKER-EXAM | 202401100300005 | Abhay Singh Tomar | A"),
         ("Instructor Upstream Repository", "https://github.com/atindeRR/MSE-2-SSED-Morning"),
-        ("Pull Request Target", "atindeRR/MSE-2-SSED-Morning (main) ← abhayships (main)"),
         ("Frontend Docker Image (Docker Hub)", "abhay1tomar1/taskflow-frontend:latest"),
         ("Backend Docker Image (Docker Hub)", "abhay1tomar1/taskflow-backend:latest")
     ]
@@ -121,8 +122,8 @@ def create_report(output_path, img_dir):
     for idx, (k, v) in enumerate(repo_data):
         row = repo_table.rows[idx]
         cell_k, cell_v = row.cells[0], row.cells[1]
-        cell_k.width = Inches(2.5)
-        cell_v.width = Inches(4.5)
+        cell_k.width = Inches(2.6)
+        cell_v.width = Inches(4.4)
 
         p_k = cell_k.paragraphs[0]
         r_k = p_k.add_run(k)
@@ -131,7 +132,11 @@ def create_report(output_path, img_dir):
 
         p_v = cell_v.paragraphs[0]
         r_v = p_v.add_run(v)
-        r_v.font.color.rgb = RGBColor(0x02, 0x84, 0xC7) if "http" in v else RGBColor(0x0F, 0x17, 0x2A)
+        if "http" in v:
+            r_v.font.color.rgb = RGBColor(0x02, 0x84, 0xC7)
+            r_v.bold = True
+        else:
+            r_v.font.color.rgb = RGBColor(0x0F, 0x17, 0x2A)
 
         set_cell_background(cell_k, "F8FAFC")
         set_cell_background(cell_v, "FFFFFF" if idx % 2 == 0 else "F8FAFC")
@@ -224,8 +229,8 @@ def create_report(output_path, img_dir):
         ),
         (
             "11-instructor-ci-status.png",
-            "Figure 11: Instructor CI Evaluation Workflow Status",
-            "Evaluation workflow checking Pull Request submission, required file presence, Hadolint linting, stack initialization, automated API test suite, and persistence tests."
+            "Figure 11: Instructor CI Evaluation Workflow Status (PR #30 Check)",
+            "Evaluation workflow checking Pull Request submission #30, required file presence, Hadolint linting, stack initialization, automated API test suite, and persistence tests."
         )
     ]
 
@@ -271,6 +276,7 @@ def create_report(output_path, img_dir):
         ("Redis sub-millisecond query caching & cache invalidation verified", "VERIFIED / PASSED"),
         ("Application end-to-end functionality tested (Register, Login, CRUD Tasks)", "VERIFIED / PASSED"),
         ("CD deployment pipeline executed and all 12 stages passed", "VERIFIED / PASSED"),
+        ("Official Pull Request #30 submitted against instructor repository", "SUBMITTED / PASSED"),
         ("Required files verified: Dockerfiles, compose files, submission.json", "VERIFIED / PASSED")
     ]
 

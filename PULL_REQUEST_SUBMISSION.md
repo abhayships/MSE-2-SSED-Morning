@@ -3,6 +3,7 @@
 - Name: Abhay Singh Tomar
 - Roll Number: 202401100300005
 - Section: A
+- Branch: CSE (Artificial Intelligence)
 - GitHub Username: abhayships
 - Docker Hub Username: abhay1tomar1
 
@@ -32,8 +33,9 @@
 
 ## CI/CD Verification
 
-- CD Workflow Run URL: https://github.com/abhayships/MSE-2-SSED-Morning/actions
-- Final Workflow Status: Success (12/12 stages passed)
+- Final Pull Request: https://github.com/atindeRR/MSE-2-SSED-Morning/pull/30
+- Fork Repository: https://github.com/abhayships/MSE-2-SSED-Morning
+- Final Workflow Status: Success (12/12 API tests passed, Persistence verified)
 
 ## Declaration
 
