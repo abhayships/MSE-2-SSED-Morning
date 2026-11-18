@@ -1,0 +1,11 @@
+{
+  "name": "Abhay Singh Tomar",
+  "roll_number": "202401100300005",
+  "section": "A",
+  "branch": "CSE (Artificial Intelligence)",
+  "github_username": "abhayships",
+  "dockerhub_username": "abhay1tomar1",
+  "repository": "https://github.com/abhayships/MSE-2-SSED-Morning",
+  "frontend_image": "docker.io/abhay1tomar1/taskflow-frontend:latest",
+  "backend_image": "docker.io/abhay1tomar1/taskflow-backend:latest"
+}
